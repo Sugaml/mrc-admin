@@ -29,7 +29,7 @@ const Router = () => {
         <Route path='/account' element={<FeeInformation/>}/>
         <Route  path='/enroll' element={<EnrollForm />} /> 
         <Route index path='/billing' element={<KhaltiPayment />} />
-        <Route path='/online' element={<CourseChoice/>}/>
+        <Route path='dashboard/online' element={<CourseChoice/>}/>
         <Route index path='/courses' element={<Course />} />
         
         <Route path='/menu' element={<BictCourse />} />

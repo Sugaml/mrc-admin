@@ -2,32 +2,48 @@ import React from "react";
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import { useDispatch, useSelector } from "react-redux";
-import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import IconButton from '@mui/material/IconButton';
-import { getStudentGeneralAction, listUserAction } from '../action/user';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { listUserAction } from '../action/user';
 import { DataGrid } from '@mui/x-data-grid';
+import { Button } from "@mui/material";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { Navigate } from "react-router-dom";
+import { SignIn } from "./Signin";
+import { useNavigate } from "react-router-dom";
 
-const columns = [
-  { field: 'ID', headerName: 'ID'},
-  { field: 'firstname', headerName: 'First name'},
-  { field: 'lastname', headerName: 'Last name' },
-  { field: 'email', headerName: 'Email'},
-  { field: 'role', headerName: 'Role' },
-];
+
+
+
 
 
 export const StudentGeneral = () => {
   const [expanded, setExpanded] = React.useState(false);
+  const navigate = useNavigate();
+  const columns = [
+    { field: 'ID', headerName: 'ID'},
+    { field: 'firstname', headerName: 'First name'},
+    { field: 'lastname', headerName: 'Last name' },
+    { field: 'email', headerName: 'Email'},
+    { field: 'role', headerName: 'Role' },
+    { field: 'actions', headerName: 'Actions', width: 400, renderCell: (params) => {
+      return (
+        <Button
+          onClick={(e) => onButtonClick(e, params.row)}
+          variant="contained"
+        >
+         <VisibilityIcon/>
+        </Button>
+      );
+    } }
+  ];
+
+  const onButtonClick = (e, row) => {
+    e.stopPropagation();
+    //do whatever you want with the row
+    console.log("Test",row);
+   
+    navigate("online")
+    // return <Navigate to="/signin" />;
+  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -56,6 +72,7 @@ export const StudentGeneral = () => {
             pageSize={5}
             rowsPerPageOptions={[5]}
             checkboxSelection
+            IconButton
           />
         </div>
         )
