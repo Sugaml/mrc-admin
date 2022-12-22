@@ -1,7 +1,7 @@
 import * as types from "../constant/actionTypes";
 
 const INITIAL_STATE = {
-  users: "",
+  users: null,
   isUsers:false
 };
 

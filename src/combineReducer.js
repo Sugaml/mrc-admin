@@ -13,7 +13,8 @@ import UserInfo from "./reducer/user";
 import CurrentCourse from "./reducer/current_course";
 import CurrentAddress from "./reducer/current_address";
 import GetUsers from "./reducer/list_user";
-
+import GetTransactions from "./reducer/transaction"
+import UserDetail from "./reducer/user_details"
 
 const rootReducer = combineReducers({
   auth: Auth,
@@ -30,6 +31,8 @@ const rootReducer = combineReducers({
   StudentGeneral:StudentGeneral,
   UserInfo:UserInfo,
   Users:GetUsers,
+  UserDetail:UserDetail,
+  Transactions:GetTransactions,
 });
 
 export default rootReducer;

@@ -21,6 +21,9 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import { useDispatch, useSelector } from "react-redux";
+import { listTransactionAction } from '../action/transactions';
+
 
 function createData(date, title, email, amount, status) {
   return {
@@ -217,6 +220,20 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export const Transactions=() =>{
+
+  const dispatch = useDispatch();
+
+  const token = useSelector((state) => state.auth.isAuthenticated);
+  console.log("token :: ", token)
+
+  const transactions = useSelector((state) => state.Transactions.transactions);
+
+  console.log("transactions :: ",transactions)
+
+  React.useEffect(() => {
+    dispatch(listTransactionAction(token))
+  }, [dispatch, token])
+
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);

@@ -10,7 +10,7 @@ import { Navigate } from "react-router-dom";
 import { SignIn } from "./Signin";
 import { useNavigate } from "react-router-dom";
 
-export const StudentGeneral = () => {
+export const Students = () => {
   const [expanded, setExpanded] = React.useState(false);
   const navigate = useNavigate();
   const columns = [
@@ -36,13 +36,10 @@ export const StudentGeneral = () => {
     //do whatever you want with the row
     console.log("Test",row);
    
-    navigate("/user/"+row.ID)
-    // return <Navigate to="/signin" />;
+    navigate("/student/"+row.ID)
   };
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+
 
   const dispatch = useDispatch();
 

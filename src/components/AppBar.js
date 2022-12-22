@@ -6,10 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
-import { NavLink } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom'
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from "react-router-dom";
@@ -19,44 +16,11 @@ import { getUserAction } from '../action/user';
 
 
 const mdTheme = createTheme();
-const pages = [
-  {
-    page: 'Home',
-    indexs: 0
-  },
-  // {
-  //   page: 'About',
-  //   indexs: 1
-  // }
-  // , {
-  //   page: 'Notice',
-  //   indexs: 2
-  // },
-  // {
-  //   page: 'Courses',
-  //   indexs: 3
-  // }
-];
 
-const settings = ['Profile', 'Account', 'Billing', 'Logout'];
-const programs = [
-  {
-    name: 'BICT',
-    path: '/menu'
-  },
-  {
-    name: 'BIM',
-    path: '/menu'
-  }
-  , {
-    name: 'BSc.CSIT',
-    path: '/menu'
-  },
-];
+const settings = ['Logout'];
 
 export const ResponsiveAppBar = ({ children }) => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [anchorElPrograms, setAnchorElPrograms] = React.useState(null);
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.auth.isAuthenticated);
@@ -67,21 +31,6 @@ export const ResponsiveAppBar = ({ children }) => {
   }, [dispatch, token])
 
   const navigate = useNavigate();
-  const handleStepContent = (step) => () => {
-    console.log(step)
-    switch (step) {
-      case 0:
-        return navigate("/home");
-      // case 1:  
-      //   return navigate("/home");
-      // case 2: 
-      //   return navigate("/home")
-      case 3:
-        return navigate("/courses")
-      default:
-        return navigate("/menu")
-    }
-  }
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -97,14 +46,6 @@ export const ResponsiveAppBar = ({ children }) => {
     navigate("/" + handleKeys.toLowerCase())
   };
 
-  const handleOpenProgramsMenu = (event) => {
-    setAnchorElPrograms(event.currentTarget);
-  }
-
-  const handleCloseProgramsMenu = () => {
-    setAnchorElPrograms(null);
-  }
-
   return (
     <div>
       <ThemeProvider theme={mdTheme} >
@@ -115,7 +56,7 @@ export const ResponsiveAppBar = ({ children }) => {
                 variant="h4"
                 noWrap
                 component="a"
-                href="/home"
+                href="/dashboard"
                 sx={{
                   mr: 2,
                   display: { xs: 'none', md: 'flex' },
@@ -128,6 +69,8 @@ export const ResponsiveAppBar = ({ children }) => {
               >
                 MRC
               </Typography>
+               {
+                user &&
                <Box sx={{ display:'flex',float:'right' }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -157,6 +100,7 @@ export const ResponsiveAppBar = ({ children }) => {
                   ))}
                 </Menu>
               </Box>
+}
             </Toolbar>
           </Container>
         </AppBar>

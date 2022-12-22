@@ -11,6 +11,7 @@ import { DocumentInformation } from './DocumentInformation';
 import { AcademicInformation } from './AcademicInformation';
 import { Transactions } from './Transaction';
 import { Deposits } from './Deposits';
+import {  useParams } from 'react-router-dom';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,8 +46,9 @@ function a11yProps(index) {
   };
 }
 
-export const Profile=()=> {
+export const Student=()=> {
   const [value, setValue] = React.useState(0);
+  const params = useParams();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -64,9 +66,9 @@ export const Profile=()=> {
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
-        <Tab label="Dashboard" {...a11yProps(0)} />
-        <Tab label="User" {...a11yProps(1)} />
-        <Tab label="Payment" {...a11yProps(2)} />
+        <Tab label="Student Info" {...a11yProps(0)} />
+        <Tab label="Academic Info" {...a11yProps(1)} />
+        <Tab label="Document Info" {...a11yProps(2)} />
       </Tabs>
       <TabPanel value={value} index={0}>
        <Deposits/>

@@ -1,6 +1,6 @@
 import ToastConfig from "../components/toast/Toast";
 import * as types from "../constant/actionTypes";
-import { getStudentGeneral,getUser, getUsers } from "../services/user";
+import { getStudentGeneral,getUser, getUsers,getUserByID} from "../services/user";
 
 
 const getStudentGeneralInfo = () => ({
@@ -98,6 +98,39 @@ export const listUserAction= (token) => async (dispatch) => {
   } catch (error) {
     console.log("error in fetch user",error);
     dispatch(listUserFailure());
+    ToastConfig.error(error.message)
+  }
+};
+
+const getUserById = () => ({
+  type: types.GET_USER_DETAIL,
+});
+
+const getUserByIduccess = (response) => ({
+    type: types.GET_USER_DETAIL_SUCCESS,
+    payload: response
+  });
+
+  const getUserByIdFailure = () => ({
+    type: types.GET_USER_DETAIL_FAILURE,
+  });
+
+export const getUserByIDAction= (token,id) => async (dispatch) => {
+  try {
+    dispatch(getUserById());
+    const response = await getUserByID(token, "user",id);
+    if (response){
+      console.log("user details info",response.data)
+      await dispatch(getUserByIduccess(response.data));
+      ToastConfig.success("Successfully get user")
+    }else{
+      dispatch(getUserByIdFailure());
+      ToastConfig.error("Filed to load user")
+    }
+    
+  } catch (error) {
+    console.log("error in fetch user",error);
+    dispatch(getUserByIdFailure());
     ToastConfig.error(error.message)
   }
 };

@@ -30,3 +30,13 @@ export const getUsers = (token, url) => {
             config
             );
 };
+
+export const getUserByID = (token,url,id) => {
+    const config = {
+        headers: { Authorization: `basic ${token}` }
+    };
+        return axios.get(
+            `${process.env.REACT_APP_API}/${url}/${id}`,
+            config
+            );
+};
