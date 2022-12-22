@@ -67,17 +67,18 @@ export const Student=()=> {
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
         <Tab label="Student Info" {...a11yProps(0)} />
-        <Tab label="Academic Info" {...a11yProps(1)} />
-        <Tab label="Document Info" {...a11yProps(2)} />
+        <Tab label="Address Info" {...a11yProps(1)} />
+        <Tab label="Academic Info" {...a11yProps(2)} />
+        <Tab label="Document Info" {...a11yProps(3)} />
       </Tabs>
       <TabPanel value={value} index={0}>
        <Deposits/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-       <StudentGeneral/>
+       <AddressInformation/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-      <Transactions/>
+      <AcademicInformation/>
       </TabPanel>
     </Box>
   );

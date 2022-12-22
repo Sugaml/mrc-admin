@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCourses, getCurrentCourse } from '../action/courses';
 
 
-export const CourseChoice = () => {
+export const Courses = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -33,24 +33,22 @@ export const CourseChoice = () => {
         dispatch(getCurrentCourse(token, id))
         return navigate("/enroll");
     }
-
     return (
         <div>
-            <Container disableGutters maxWidth="xl" component="main" sx={{ pt: 2, pb: 6 }}>
-
+             <Container  sx={{width:'100%', pt: 2, pb:3 }}>
+            <Container  sx={{ pt: 2, pb:3 }}>
                 <Typography
                     component="h6"
                     variant="h6"
                     color="text.primary"
                     gutterBottom
                 >
-                    We offers
+                   Available Courses
                 </Typography>
             </Container>
-            <Container maxWidth="lg" component="main">
-                <Grid container spacing={5} alignItems="flex-end">
+            <Container sx={{width:'100%',display:'flex'}} >
+                <Grid lg container spacing={5} alignItems="flex-end">
                     {courses.map((course) => (
-                        // Enterprise card is full width at sm breakpoint
                         <Grid
                             item
                             key={course.name}
@@ -131,15 +129,11 @@ export const CourseChoice = () => {
                                         </MenuItem>
                                     </MenuList>
                                 </CardContent>
-                                <CardActions>
-                                    <Button fullWidth onClick={handleEnroll(course.ID)} variant="contained">
-                                        Enroll Now
-                                    </Button>
-                                </CardActions>
                             </Card>
                         </Grid>
                     ))}
                 </Grid>
+            </Container>
             </Container>
         </div>
     )

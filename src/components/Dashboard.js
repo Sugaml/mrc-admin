@@ -5,13 +5,10 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { StudentGeneral } from './StudentGeneral';
-import { AddressInformation } from './AddressInformation';
-import { CourseInformation } from './CourseInformation';
-import { DocumentInformation } from './DocumentInformation';
-import { AcademicInformation } from './AcademicInformation';
 import { Transactions } from './Transaction';
 import { DashboardContent } from './DashboardContent';
 import { Students } from './Students';
+import { Courses } from './Courses';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -55,7 +52,8 @@ export const Dashboard=()=> {
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex' }}
+      sx={{ width: '100%',
+        height: '100%', flexGrow: 1, bgcolor: 'background.paper', display: 'flex' }}
     >
       <Tabs
         orientation="vertical"
@@ -66,20 +64,24 @@ export const Dashboard=()=> {
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
         <Tab label="Dashboard" {...a11yProps(0)} />
-        <Tab label="Users" {...a11yProps(1)} />
-        <Tab label="Students" {...a11yProps(2)} />
-        <Tab label="Payments" {...a11yProps(3)} />
+        <Tab label="Courses" {...a11yProps(1)} />
+        <Tab label="Users" {...a11yProps(2)} />
+        <Tab label="Students" {...a11yProps(3)} />
+        <Tab label="Payments" {...a11yProps(4)} />
       </Tabs>
       <TabPanel value={value} index={0}>
        <DashboardContent/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-       <StudentGeneral/>
+       <Courses/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-       <Students/>
+       <StudentGeneral/>
       </TabPanel>
       <TabPanel value={value} index={3}>
+       <Students/>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
       <Transactions/>
       </TabPanel>
     </Box>

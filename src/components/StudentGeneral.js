@@ -1,17 +1,13 @@
 import React from "react";
 import Typography from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
 import { useDispatch, useSelector } from "react-redux";
 import { listUserAction } from '../action/user';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button } from "@mui/material";
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { Navigate } from "react-router-dom";
-import { SignIn } from "./Signin";
 import { useNavigate } from "react-router-dom";
 
 export const StudentGeneral = () => {
-  const [expanded, setExpanded] = React.useState(false);
   const navigate = useNavigate();
   const columns = [
     { field: 'ID', headerName: 'ID'},
@@ -33,15 +29,9 @@ export const StudentGeneral = () => {
 
   const onButtonClick = (e, row) => {
     e.stopPropagation();
-    //do whatever you want with the row
     console.log("Test",row);
    
     navigate("/user/"+row.ID)
-    // return <Navigate to="/signin" />;
-  };
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
   };
 
   const dispatch = useDispatch();
