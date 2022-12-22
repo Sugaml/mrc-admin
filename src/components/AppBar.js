@@ -107,10 +107,10 @@ export const ResponsiveAppBar = ({ children }) => {
 
   return (
     <div>
-      <ThemeProvider theme={mdTheme}>
+      <ThemeProvider theme={mdTheme} >
         <AppBar position="static">
           <Container maxWidth="xl">
-            <Toolbar disableGutters>
+            <Toolbar disableGutters sx={{ display:'flex',justifyContent:'space-between' }} >
               <Typography
                 variant="h4"
                 noWrap
@@ -128,7 +128,7 @@ export const ResponsiveAppBar = ({ children }) => {
               >
                 MRC
               </Typography>
-               <Box sx={{ float:'right' }}>
+               <Box sx={{ display:'flex',float:'right' }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar alt={user.firstname} src={user.image} />

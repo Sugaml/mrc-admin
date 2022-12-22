@@ -28,6 +28,7 @@ function Copyright(props) {
 
 function DashboardContent() {
   return (
+    
         <Box
           component="main"
           sx={{

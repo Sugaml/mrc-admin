@@ -15,6 +15,16 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { DataGrid } from '@mui/x-data-grid';
+
+const columns = [
+  { field: 'ID', headerName: 'ID'},
+  { field: 'firstname', headerName: 'First name'},
+  { field: 'lastname', headerName: 'Last name' },
+  { field: 'email', headerName: 'Email'},
+  { field: 'role', headerName: 'Role' },
+];
+
 
 export const StudentGeneral = () => {
   const [expanded, setExpanded] = React.useState(false);
@@ -26,47 +36,32 @@ export const StudentGeneral = () => {
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.auth.isAuthenticated);
-  console.log("token :: ",token)
+  console.log("token :: ", token)
 
   const users = useSelector((state) => state.Users.users);
-    React.useEffect(()=>{
-      dispatch(listUserAction(token))
-    },[dispatch,token])
+  console.log("users",users)
+  React.useEffect(() => {
+    dispatch(listUserAction(token))
+  }, [dispatch, token])
 
 
   return (
     <div>
-    { users ? (
-      <div>
-          <Typography variant="h6" gutterBottom sx={{ pt: 2}} >Users</Typography>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="spanning table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center" >UID</TableCell>
-            <TableCell align="center">Name</TableCell>
-            <TableCell align="center" >Email</TableCell>
-            <TableCell align="center">Role</TableCell>
-            <TableCell align="center">Active</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {users.map((user) => (
-            <TableRow key={user.ID}>
-              <TableCell align="center">{user.ID}</TableCell>
-              <TableCell align="center">{user.firstname +" "+user.lastname }</TableCell>
-              <TableCell align="center">{user.email}</TableCell>
-              <TableCell align="center">student</TableCell>
-              <TableCell align="center">{user.active}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-      </div>
-    ) : (
-     <Typography>Users not found</Typography>
-    )}
-  </div>
+      {users ? (
+        <div style={{ height: 400, width:700 }}>
+          <DataGrid
+            rows={users}
+            getRowId={(row) => row.ID} 
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            checkboxSelection
+          />
+        </div>
+        )
+        : (
+          <Typography>Users not found</Typography>
+        )}
+    </div>
   );
 }
