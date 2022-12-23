@@ -11,15 +11,19 @@ function GetUsers(state = INITIAL_STATE, action) {
     case types.LIST_USER:
       return {
         ...state,
-        isUser: true,
+        isUsers: true,
       };
     case types.LIST_USER_SUCCESS:
-        console.log('users reducer === ', payload)
       return {
         ...state,
         users:payload,
-        isUsers: true,
+        isUsers: false,
       }
+      case types.LIST_USER_FAILURE:
+        return {
+          ...state,
+          isUsers: false,
+        };
     default:
       return state;
   }

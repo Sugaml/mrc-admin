@@ -45,7 +45,7 @@ export const Courses = () => {
                             key={course.name}
                             xs={12}
                             sm={course.name === 'Enterprise' ? 12 : 6}
-                            md={4}
+                            md={6}
                         >
                             <Card>
                                 <CardHeader
