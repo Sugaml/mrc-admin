@@ -9,6 +9,7 @@ import Link from '@mui/material/Link';
 import { Chart } from './Charts'
 import { Deposits } from './Deposits'
 import { Notices } from './Notice';
+import { UserEdit } from './UserEdit';
 
 export const DashboardContent=() =>{
   return (

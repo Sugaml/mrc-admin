@@ -4,11 +4,11 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { StudentGeneral } from './StudentGeneral';
 import { Transactions } from './Transaction';
 import { DashboardContent } from './DashboardContent';
 import { Students } from './Students';
 import { Courses } from './Courses';
+import { Users } from './Users';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -76,7 +76,7 @@ export const Dashboard=()=> {
        <Courses/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-       <StudentGeneral/>
+       <Users/>
       </TabPanel>
       <TabPanel value={value} index={3}>
        <Students/>

@@ -8,13 +8,13 @@ import Switch from '@mui/material/Switch';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from "react-router-dom";
 
-export const Students = () => {
+export const Users = () => {
   const navigate = useNavigate();
   const columns = [
-    { field: 'ID', headerName: 'ID' },
-    { field: 'firstname', headerName: 'First name' },
+    { field: 'ID', headerName: 'ID'},
+    { field: 'firstname', headerName: 'First name'},
     { field: 'lastname', headerName: 'Last name' },
-    { field: 'email', headerName: 'Email' },
+    { field: 'email', headerName: 'Email'},
     { field: 'role', headerName: 'Role' },
     {
       field: 'Status', headerName: 'Status', width: 200, renderCell: (params) => {
@@ -26,33 +26,24 @@ export const Students = () => {
         );
       }
     },
-    {
-      field: 'actions', headerName: 'Actions', width: 200, renderCell: (params) => {
-        return (
-          <Button
-            onClick={(e) => onButtonClick(e, params.row)}
-            variant="contained"
-          >
-            <VisibilityIcon />
-          </Button>
-        );
-      }
-    },
-   
-   
+    { field: 'actions', headerName: 'Actions', width: 400, renderCell: (params) => {
+      return (
+        <Button
+          onClick={(e) => onButtonClick(e, params.row)}
+          variant="contained"
+        >
+         <VisibilityIcon/>
+        </Button>
+      );
+    } }
   ];
-
-
 
   const onButtonClick = (e, row) => {
     e.stopPropagation();
-    //do whatever you want with the row
-    console.log("Test", row);
-
-    navigate("/student/" + row.ID)
+    console.log("Test",row);
+   
+    navigate("/user/"+row.ID)
   };
-
-
 
   const dispatch = useDispatch();
 
@@ -60,7 +51,7 @@ export const Students = () => {
   console.log("token :: ", token)
 
   const users = useSelector((state) => state.Users.users);
-  console.log("users", users)
+  console.log("users",users)
   React.useEffect(() => {
     dispatch(listUserAction(token))
   }, [dispatch, token])
@@ -68,10 +59,10 @@ export const Students = () => {
   return (
     <div>
       {users ? (
-        <div style={{ height: 400, width: 900 }}>
+        <div style={{ height: 400, width:900 }}>
           <DataGrid
             rows={users}
-            getRowId={(row) => row.ID}
+            getRowId={(row) => row.ID} 
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
@@ -79,7 +70,7 @@ export const Students = () => {
             IconButton
           />
         </div>
-      )
+        )
         : (
           <Typography>Users not found</Typography>
         )}

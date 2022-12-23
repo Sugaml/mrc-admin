@@ -1,8 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
@@ -12,13 +10,11 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import MenuList from '@mui/material/MenuList';
 import Divider from '@mui/material/Divider';
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCourses, getCurrentCourse } from '../action/courses';
+import { getAllCourses } from '../action/courses';
 
 
 export const Courses = () => {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const token = useSelector((state) => state.auth.isAuthenticated);
@@ -28,11 +24,6 @@ export const Courses = () => {
         dispatch(getAllCourses())
     }, [dispatch])
     console.log(courses)
-    const handleEnroll = (id) => () => {
-        console.log("course id :: ", id)
-        dispatch(getCurrentCourse(token, id))
-        return navigate("/enroll");
-    }
     return (
         <div>
              <Container  sx={{width:'100%', pt: 2, pb:3 }}>

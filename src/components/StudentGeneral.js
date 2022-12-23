@@ -1,68 +1,54 @@
 import React from "react";
 import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
 import { useDispatch, useSelector } from "react-redux";
-import { listUserAction } from '../action/user';
-import { DataGrid } from '@mui/x-data-grid';
-import { Button } from "@mui/material";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import { useNavigate } from "react-router-dom";
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import { getStudentGeneralAction } from '../action/user';
+
 
 export const StudentGeneral = () => {
-  const navigate = useNavigate();
-  const columns = [
-    { field: 'ID', headerName: 'ID'},
-    { field: 'firstname', headerName: 'First name'},
-    { field: 'lastname', headerName: 'Last name' },
-    { field: 'email', headerName: 'Email'},
-    { field: 'role', headerName: 'Role' },
-    { field: 'actions', headerName: 'Actions', width: 400, renderCell: (params) => {
-      return (
-        <Button
-          onClick={(e) => onButtonClick(e, params.row)}
-          variant="contained"
-        >
-         <VisibilityIcon/>
-        </Button>
-      );
-    } }
-  ];
-
-  const onButtonClick = (e, row) => {
-    e.stopPropagation();
-    console.log("Test",row);
-   
-    navigate("/user/"+row.ID)
-  };
 
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.auth.isAuthenticated);
-  console.log("token :: ", token)
+  console.log("token :: ",token)
 
-  const users = useSelector((state) => state.Users.users);
-  console.log("users",users)
-  React.useEffect(() => {
-    dispatch(listUserAction(token))
-  }, [dispatch, token])
+  const student = useSelector((state) => state.StudentGeneral.currentStudent);
+    React.useEffect(()=>{
+      dispatch(getStudentGeneralAction(token))
+    },[dispatch,token])
+
 
   return (
     <div>
-      {users ? (
-        <div style={{ height: 400, width:700 }}>
-          <DataGrid
-            rows={users}
-            getRowId={(row) => row.ID} 
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            checkboxSelection
-            IconButton
-          />
+      {
+          student && !!student.ID ? (
+          <div>
+          <Card sx={{ maxWidth: 1200 }}>
+            <CardHeader
+              avatar={
+                <Avatar sizes='150' alt={student.first_name} src="https://www.w3schools.com/howto/img_avatar.png" />
+              }
+              title={student.first_name + " " + student.last_name }
+              subheader="Approved"
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+              {student.email}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+              {student.mobile_num}
+              </Typography>
+            </CardContent>
+          </Card>
         </div>
+        ):(
+          <div>No Record Found</div>
         )
-        : (
-          <Typography>Users not found</Typography>
-        )}
+      }
     </div>
+   
   );
 }

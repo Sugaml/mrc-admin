@@ -23,8 +23,10 @@ export const AcademicInformation = () => {
         dispatch(getStudentGeneralAction(token))
     }, [dispatch, token])
     return (
-        student && !!student.ID && <div>
-            {/* <ThemeProvider theme={theme}>
+        <div>
+            {student && !!student.ID ? (
+                <div>
+                    {/* <ThemeProvider theme={theme}>
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
                     <Box
@@ -35,18 +37,18 @@ export const AcademicInformation = () => {
                             alignItems: 'center',
                         }}
                     > */}
-                        <Link sx={{ width: 400 }}>
-                            <ListItem
-                                innerDivStyle={{ paddingLeft: 80 }}
-                                leftAvatar={
-                                    <img style={{ height: '100%', margin: -16 }} src="https://zartnerds.files.wordpress.com/2015/10/thumbnail.png" />
-                                }
-                                primaryText="Some Title"
-                                secondaryText="That's a good looking thumbnail"
-                            >
+                    <Link sx={{ width: 400 }}>
+                        <ListItem
+                            innerDivStyle={{ paddingLeft: 80 }}
+                            leftAvatar={
+                                <img style={{ height: '100%', margin: -16 }} src="https://zartnerds.files.wordpress.com/2015/10/thumbnail.png" />
+                            }
+                            primaryText="Some Title"
+                            secondaryText="That's a good looking thumbnail"
+                        >
                         </ListItem>
-                        </Link>
-                        {/* <Avatar sizes='150' alt={student.first_name} src="https://www.w3schools.com/howto/img_avatar.png" />
+                    </Link>
+                    {/* <Avatar sizes='150' alt={student.first_name} src="https://www.w3schools.com/howto/img_avatar.png" />
                         <Typography component="h1" variant="h5">
                             {student.first_name} {student.last_name}
                         </Typography>
@@ -70,6 +72,11 @@ export const AcademicInformation = () => {
                     </Box>
                 </Container>
             </ThemeProvider> */}
+                </div>
+            ) : (
+                <div>No Record found</div>
+            )}
         </div>
+
     );
 }

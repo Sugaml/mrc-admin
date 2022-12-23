@@ -6,12 +6,11 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { StudentGeneral } from './StudentGeneral';
 import { AddressInformation } from './AddressInformation';
-import { CourseInformation } from './CourseInformation';
 import { DocumentInformation } from './DocumentInformation';
 import { AcademicInformation } from './AcademicInformation';
 import { Transactions } from './Transaction';
-import { Deposits } from './Deposits';
 import {  useParams } from 'react-router-dom';
+import { DocumentView } from './DocumentView';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -72,13 +71,16 @@ export const Student=()=> {
         <Tab label="Document Info" {...a11yProps(3)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-       <Deposits/>
+       <StudentGeneral/>
       </TabPanel>
       <TabPanel value={value} index={1}>
        <AddressInformation/>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <AcademicInformation/>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+      <DocumentView/>
       </TabPanel>
     </Box>
   );
