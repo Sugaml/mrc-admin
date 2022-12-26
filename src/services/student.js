@@ -49,7 +49,7 @@ export const updateStudentStatus = (token, url,statusData) => {
   };
       return axios.put(
           `${process.env.REACT_APP_API}/${url}`,
+          statusData,
           config,
-          statusData
           );
 };

@@ -84,10 +84,10 @@ const studentStatusFailure = () => ({
 });
 
 
-export const studentStatusAction= (token,statusData) => async (dispatch) => {
+export const studentStatusAction= (token,sid,statusData) => async (dispatch) => {
   try{
     dispatch(studentStatus());
-    const response = await updateStudentStatus(token, "student/status",statusData);
+    const response = await updateStudentStatus(token, "student/"+sid+"/status",statusData);
     if (response){
       dispatch(studentStatusSuccess(response));
       ToastConfig.success("Successfully added student information.")

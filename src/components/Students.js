@@ -2,11 +2,12 @@ import React from "react";
 import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from "react-redux";
 import { DataGrid } from '@mui/x-data-grid';
-import { Button } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import Switch from '@mui/material/Switch';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from "react-router-dom";
 import { listStudentAction } from "../action/studentinfo";
+import ResponsiveDialog from "./ResponsiveDialog";
 
 export const Students = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export const Students = () => {
       field: 'Status', headerName: 'Status', width: 100, renderCell: (params) => {
         return (
           <Switch
-            checked={params.row.active}
+            checked={params.row.is_approved}
             inputProps={{ 'aria-label': 'controlled' }}
           />
         );
@@ -28,12 +29,15 @@ export const Students = () => {
     {
       field: 'approved', headerName: 'Approved', width: 200, renderCell: (params) => {
         return (
-          <Button
-            onClick={(e) => onButtonClick(e, params.row)}
-            variant="contained"
-          >
-            Approved
-          </Button>
+          // <Button
+          //   onClick={(e) => onButtonClick(e, params.row)}
+          //   variant="contained"
+          // >
+          //   Approved
+          // </Button>
+          <ResponsiveDialog sid={params.row.ID}
+           sstatus={params.row.is_approved}
+           />
         );
       }
     },
@@ -79,7 +83,10 @@ export const Students = () => {
   return (
     <div>
       {students ? (
+
         <div style={{ height: 400, width: 1100 }}>
+          <ResponsiveDialog/>
+          <Divider/>
           <DataGrid
             rows={students}
             getRowId={(row) => row.ID}
