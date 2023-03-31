@@ -21,15 +21,15 @@ const listTransaction = () => ({
       const response = await getTransactions(token, "payment/transactions");
       if (response.data || response.status === 200){
         console.log("transactions response :: ",response)
-        await dispatch(listTransactionSuccess(response));
+        await dispatch(listTransactionSuccess(response.data));
         ToastConfig.success("Successfully list transactions")
       }
-      // else{
-      //   dispatch(listTransactionFailure());
-      //   ToastConfig.error("Failed to load transactions")
-      // }
+      else{
+        dispatch(listTransactionFailure());
+        ToastConfig.error("Failed to load transactions")
+      }
     } catch (error) {
-      // console.log("error in fetch teansactions",error);
+      console.log("error in fetch teansactions",error);
       await dispatch(listTransactionFailure());
       ToastConfig.error(error.message)
     }
