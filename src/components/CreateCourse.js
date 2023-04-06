@@ -34,6 +34,7 @@ export default function CreateCourse({ sid, sstatus }) {
             seat: "",
             faculty: "",
             affiliated_by:"",
+            credit_hour:"",
         },
 
         validationSchema: Yup.object({
@@ -45,6 +46,7 @@ export default function CreateCourse({ sid, sstatus }) {
             seat: Yup.string().required("required course seat"),
             faculty: Yup.string().required("required course faculty"),
             affiliated_by: Yup.string().required("required course affiliated by"),
+            credit_hour:Yup.string().required("required course credit hours"),
         }),
     });
 
@@ -210,6 +212,22 @@ export default function CreateCourse({ sid, sstatus }) {
                                 variant="outlined"
                                 error={formik.touched.affiliated_by && formik.errors.affiliated_by ? true : false}
                                 helperText={formik.errors.affiliated_by}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={6} >
+                            <TextField
+                                required
+                                id="credit_hour"
+                                name="credit_hour"
+                                label="Course credit hours"
+                                value={formik.values.affiliated_by}
+                                fullWidth
+                                autoComplete="given-name"
+                                variant="outlined"
+                                error={formik.touched.credit_hour && formik.errors.credit_hour ? true : false}
+                                helperText={formik.errors.credit_hour}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />

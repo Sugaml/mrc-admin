@@ -14,8 +14,6 @@ export const Users = () => {
   const navigate = useNavigate();
   const columns = [
     { field: 'ID', headerName: 'ID'},
-    { field: 'firstname', headerName: 'First name'},
-    { field: 'lastname', headerName: 'Last name' },
     { field: 'email', headerName: 'Email'},
     { field: 'role', headerName: 'Role' },
     {
