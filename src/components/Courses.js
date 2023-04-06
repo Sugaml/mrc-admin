@@ -10,6 +10,9 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import MenuList from '@mui/material/MenuList';
 import Divider from '@mui/material/Divider';
+import CreateCourse from "./CreateCourse";
+import { IconButton } from '@material-ui/core';
+import CreateIcon from '@mui/icons-material/Create';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCourses } from '../action/courses';
 
@@ -24,21 +27,28 @@ export const Courses = () => {
         dispatch(getAllCourses())
     }, [dispatch])
     console.log(courses)
+
+    const handleIcon = () => {
+        console.log(";;;;;;")
+    }
+
     return (
         <div>
-             <Container  sx={{width:'100%', pt: 2, pb:3 }}>
-            <Container  sx={{ pt: 2, pb:3 }}>
+            <Container>
+                <div></div>
                 <Typography
                     component="h6"
                     variant="h6"
                     color="text.primary"
                     gutterBottom
                 >
-                   Available Courses
+                    Available Course
                 </Typography>
-            </Container>
-            <Container sx={{width:'100%',display:'flex'}} >
-                <Grid lg container spacing={5} alignItems="flex-end">
+                <div >
+                <CreateCourse />
+                </div>
+
+                <Grid lg container spacing={2} alignItems="flex-end">
                     {courses.map((course) => (
                         <Grid
                             item
@@ -49,7 +59,20 @@ export const Courses = () => {
                         >
                             <Card>
                                 <CardHeader
-                                    title={course.name}
+                                    title={<div>
+                                        <Grid container >
+                                            <Grid item md={8}>
+                                                <Typography variant='h4' >
+                                                    {course.name}
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item md={4}>
+                                                <span onClick={() => handleIcon()}
+                                                style={{cursor:"pointer"}}
+                                                ><CreateIcon /></span>
+                                            </Grid>
+                                        </Grid>
+                                    </div>}
                                     titleTypographyProps={{ align: 'center' }}
                                     sx={{
                                         backgroundColor: (theme) =>
@@ -58,7 +81,14 @@ export const Courses = () => {
                                                 : theme.palette.grey[700],
                                     }}
                                 />
-                                <CardContent>
+                                <CardContent sx={{
+                                    display: 'flex',
+                                    mb: 2,
+                                    flexDirection: "column",
+                                    justifyContent: 'center',
+                                    alignItems: 'baseline',
+                                }}>
+                                    <Divider />
                                     <Box
                                         sx={{
                                             display: 'flex',
@@ -74,8 +104,13 @@ export const Courses = () => {
                                             /semester
                                         </Typography>
                                     </Box>
-                                    <Divider />
-                                    <MenuList>
+                                    <MenuList sx={{
+                                            display: 'flex',
+                                            width: '100%',
+                                            flexDirection:'column',
+                                            px:1,
+                                            mt:1,
+                                        }}>
                                         <MenuItem>
                                             <ListItemText>Duration</ListItemText>
                                             <Typography variant="body2">
@@ -124,7 +159,6 @@ export const Courses = () => {
                         </Grid>
                     ))}
                 </Grid>
-            </Container>
             </Container>
         </div>
     )

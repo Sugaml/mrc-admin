@@ -6,15 +6,15 @@ import { Button, Divider } from "@mui/material";
 import Switch from '@mui/material/Switch';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from "react-router-dom";
-import { listStudentAction } from "../action/studentinfo";
 import ResponsiveDialog from "./ResponsiveDialog";
+import { listStudentAction } from "../action/studentinfo";
 
 export const Students = () => {
   const navigate = useNavigate();
   const columns = [
     { field: 'ID', headerName: 'ID' },
-    { field: 'first_name', headerName: 'First name' },
-    { field: 'last_name', headerName: 'Last name' },
+    { field: 'firstname', headerName: 'First name' },
+    { field: 'lastname', headerName: 'Last name' },
     { field: 'email', headerName: 'Email', width: 200 },
     {
       field: 'Status', headerName: 'Status', width: 100, renderCell: (params) => {
@@ -84,22 +84,21 @@ export const Students = () => {
     <div>
       {students ? (
 
-        <div style={{ height: 400, width: 1100 }}>
-          <ResponsiveDialog/>
-          <Divider/>
+        <div style={{ height: 400, width: "90vw" }}>
           <DataGrid
             rows={students}
             getRowId={(row) => row.ID}
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
+            density={"comfortable"}
             checkboxSelection
             IconButton
           />
         </div>
       )
         : (
-          <Typography>Users not found</Typography>
+          <Typography>student not found</Typography>
         )}
     </div>
   );
