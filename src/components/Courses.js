@@ -12,17 +12,25 @@ import MenuList from '@mui/material/MenuList';
 import Divider from '@mui/material/Divider';
 import CreateCourse from "./CreateCourse";
 import { IconButton } from '@material-ui/core';
+import { useState } from 'react';
 import CreateIcon from '@mui/icons-material/Create';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCourse, getAllCourses } from '../action/courses';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
 
 export const Courses = () => {
     const dispatch = useDispatch();
 
+    const [open, setOpen] = useState(false);
+
+
     const token = useSelector((state) => state.auth.isAuthenticated);
     const courses = useSelector((state) => state.Courses.courses);
+    const loading = useSelector((state) => state.Courses.fetchingCourse);
 
     React.useEffect(() => {
         dispatch(getAllCourses())
@@ -32,14 +40,22 @@ export const Courses = () => {
     const handleIcon = () => {
         console.log(";;;;;;")
     }
-    
-    const handleDelete=(id)=>{
-        console.log("delete id :: ",id)
-        dispatch(deleteCourse(token,id))
+
+    const handleDelete=(id)=> {
+        console.log("delete action",id)
+      // Perform delete action
+      console.log("delete id :: ", id)
+      dispatch(deleteCourse(token, id))
+      handleCancelDelete()
+    }
+  
+    function handleCancelDelete() {
+      setOpen(false);
     }
 
     return (
         <div>
+           {courses ? (
             <Container>
                 <div></div>
                 <Typography
@@ -51,9 +67,8 @@ export const Courses = () => {
                     Available Course
                 </Typography>
                 <div >
-                <CreateCourse />
+                    <CreateCourse />
                 </div>
-
                 <Grid lg container spacing={2} alignItems="flex-end">
                     {courses.map((course) => (
                         <Grid
@@ -74,13 +89,27 @@ export const Courses = () => {
                                             </Grid>
                                             <Grid item md={2}>
                                                 <span onClick={() => handleIcon()}
-                                                style={{cursor:"pointer"}}
+                                                    style={{ cursor: "pointer" }}
                                                 ><CreateIcon /></span>
                                             </Grid>
+
                                             <Grid item md={2}>
-                                                <span onClick={() => handleDelete(course.ID)}
-                                                style={{cursor:"pointer"}}
-                                                ><DeleteIcon /></span>
+                                                <div>
+                                                    <span onClick={() => setOpen(true)}
+                                                        style={{ cursor: "pointer" }}
+                                                    ><DeleteIcon /> </span>
+                                                        <Dialog open={open} onClose={handleCancelDelete}>
+                                                            <DialogTitle>Confirm Delete</DialogTitle>
+                                                            <DialogContent>
+                                                                Are you sure you want to delete this item?
+                                                            </DialogContent>
+                                                            <DialogActions>
+                                                                <Button onClick={()=>handleCancelDelete()}>Cancel</Button>
+                                                                <Button onClick={()=>handleDelete(course.ID)} variant="contained" color="error">Delete</Button>
+                                                            </DialogActions>
+                                                        </Dialog>
+                                                   
+                                                </div>
                                             </Grid>
                                         </Grid>
                                     </div>}
@@ -116,12 +145,12 @@ export const Courses = () => {
                                         </Typography>
                                     </Box>
                                     <MenuList sx={{
-                                            display: 'flex',
-                                            width: '100%',
-                                            flexDirection:'column',
-                                            px:1,
-                                            mt:1,
-                                        }}>
+                                        display: 'flex',
+                                        width: '100%',
+                                        flexDirection: 'column',
+                                        px: 1,
+                                        mt: 1,
+                                    }}>
                                         <MenuItem>
                                             <ListItemText>Duration</ListItemText>
                                             <Typography variant="body2">
@@ -171,6 +200,15 @@ export const Courses = () => {
                     ))}
                 </Grid>
             </Container>
+           ):(
+            <Backdrop
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={loading}
+            // onClick={handleClose}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
+           )}
         </div>
     )
 }

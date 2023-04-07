@@ -87,6 +87,7 @@ export const creatCourse= (token,courseData) => async (dispatch) => {
     if (response){
       dispatch(createCourseSuccess(response));
       ToastConfig.success("Successfully added course.")
+      dispatch(getAllCourses())
     }else{
       dispatch(createCourseFailure());
       ToastConfig.error("Filed to add course.")
@@ -118,6 +119,7 @@ export const deleteCourse= (token,cid) => async (dispatch) => {
     const response = await deleteCourseByID(token, "course/"+cid.toString());
     if (response){
       dispatch(deleteCourseSuccess(response));
+      dispatch(getAllCourses())
       ToastConfig.success("Successfully deleted course.")
     }else{
       dispatch(deleteCourseFailure());

@@ -75,12 +75,9 @@ export default function CreateCourse({ sid, sstatus }) {
                 "affiliated_by":formik.values.affiliated_by
             }
             const payload = JSON.stringify(courseData);
-
             console.log("course payload :: ",payload)
             dispatch(creatCourse(token,courseData))
-
-        console.log("created course.")
-        
+            handleClose()        
     }
    
     return (

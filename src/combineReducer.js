@@ -17,8 +17,6 @@ import GetTransactions from "./reducer/transaction"
 import UserDetail from "./reducer/user_details"
 import ListStudent from "./reducer/students"
 import UpdateStudentStatus from "./reducer/student_status";
-import CreateCourse from "./reducer/create_course";
-import DeleteCourse from "./reducer/delete_course";
 
 const rootReducer = combineReducers({
   auth: Auth,
@@ -30,8 +28,6 @@ const rootReducer = combineReducers({
   PaymentInitiateInfo:PaymentInitiateInfo,
   PaymentVerifyInfo:PaymentVerifyInfo,
   Courses:Courses,
-  CreateCourse:CreateCourse,
-  DeleteCourse:DeleteCourse,
   CurrentCourse:CurrentCourse,
   CurrentAddress:CurrentAddress,
   StudentGeneral:StudentGeneral,

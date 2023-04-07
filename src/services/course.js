@@ -12,6 +12,8 @@ export const postCourse =  (token,courseData, url) => {
 };
 
 export const deleteCourseByID =  (token, url) => {
+  console.log("token :: ",token)
+  console.log("url :: ",url)
   const config = {
       headers: {
         Authorization: `basic ${token}`,
@@ -19,7 +21,6 @@ export const deleteCourseByID =  (token, url) => {
   };
   return  axios.delete(
       `${process.env.REACT_APP_API}/${url}`,
-      {},
       config,
       );
 };
