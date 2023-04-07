@@ -14,12 +14,16 @@ function GetTransactions(state = INITIAL_STATE, action) {
         isTransactions: true,
       };
     case types.LIST_TRANSACTION_SUCCESS:
-        console.log('transactions reducer === ', payload)
       return {
         ...state,
         transactions:payload,
-        isTransactions: true,
+        isTransactions: false,
       }
+      case types.LIST_TRANSACTION_FAILURE:
+        return {
+          ...state,
+          isTransactions: false,
+        };
     default:
       return state;
   }

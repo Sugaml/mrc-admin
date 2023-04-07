@@ -11,7 +11,6 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuList from '@mui/material/MenuList';
 import Divider from '@mui/material/Divider';
 import CreateCourse from "./CreateCourse";
-import { IconButton } from '@material-ui/core';
 import { useState } from 'react';
 import CreateIcon from '@mui/icons-material/Create';
 import Backdrop from '@mui/material/Backdrop';

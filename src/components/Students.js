@@ -1,13 +1,14 @@
 import React from "react";
-import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from "react-redux";
 import { DataGrid } from '@mui/x-data-grid';
-import { Button, Divider } from "@mui/material";
+import { Button } from "@mui/material";
 import Switch from '@mui/material/Switch';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from "react-router-dom";
 import ResponsiveDialog from "./ResponsiveDialog";
 import { listStudentAction } from "../action/studentinfo";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const Students = () => {
   const navigate = useNavigate();
@@ -36,8 +37,8 @@ export const Students = () => {
           //   Approved
           // </Button>
           <ResponsiveDialog sid={params.row.ID}
-           sstatus={params.row.is_approved}
-           />
+            sstatus={params.row.is_approved}
+          />
         );
       }
     },
@@ -53,8 +54,8 @@ export const Students = () => {
         );
       }
     },
-   
-   
+
+
   ];
 
 
@@ -72,10 +73,10 @@ export const Students = () => {
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.auth.isAuthenticated);
-  console.log("token :: ", token)
 
   const students = useSelector((state) => state.Students.students);
-  console.log("users", students)
+  const loading = useSelector((state) => state.Students.isStudents);
+
   React.useEffect(() => {
     dispatch(listStudentAction(token))
   }, [dispatch, token])
@@ -98,7 +99,13 @@ export const Students = () => {
         </div>
       )
         : (
-          <Typography>student not found</Typography>
+          <Backdrop
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={loading}
+          // onClick={handleClose}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
         )}
     </div>
   );
