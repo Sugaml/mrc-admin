@@ -68,9 +68,10 @@ export const StudentInfo = ({
                 "parent_relation":formik.values.parentRelation,
                 "cid":course.ID,
             }
-            console.log(studetInfoData)
+            const payload = JSON.stringify(studetInfoData);
+            console.log(payload)
             handleNextAddress();
-            dispatch(studentInfoAction(isAuthenticated,studetInfoData))
+            dispatch(studentInfoAction(isAuthenticated,payload))
         }
     });
 

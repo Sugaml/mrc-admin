@@ -1,6 +1,6 @@
 import ToastConfig from "../components/toast/Toast";
 import * as types from "../constant/actionTypes";
-import { getListCourses,getCourse } from "../services/course";
+import { getListCourses,getCourse, postCourse, deleteCourseByID } from "../services/course";
 
 
 const getCourses = () => ({
@@ -66,3 +66,69 @@ export const getCurrentCourse= (token,id) => async (dispatch) => {
     ToastConfig.error(error.message)
   }
 };
+
+const createCourseInfo = () => ({
+  type: types.CREATE_COURSE_INFO,
+});
+
+const createCourseSuccess = (response) => ({
+  type: types.CREATE_COURSE_SUCCESS,
+  payload: response,
+});
+
+const createCourseFailure = () => ({
+  type: types.CREATE_COURSE_FAILURE,
+});
+
+export const creatCourse= (token,courseData) => async (dispatch) => {
+  try{
+    dispatch(createCourseInfo);
+    const response = await postCourse(token,courseData, "course");
+    if (response){
+      dispatch(createCourseSuccess(response));
+      ToastConfig.success("Successfully added course.")
+    }else{
+      dispatch(createCourseFailure());
+      ToastConfig.error("Filed to add course.")
+    }
+  }
+  catch (error) {
+      console.log("error add course",error);
+      dispatch(createCourseFailure());
+      ToastConfig.error(error.error)
+    }
+};
+
+const deleteCourseInfo = () => ({
+  type: types.DELETE_COURSE_INFO,
+});
+
+const deleteCourseSuccess = (response) => ({
+  type: types.DELETE_COURSE_SUCCESS,
+  payload: response,
+});
+
+const deleteCourseFailure = () => ({
+  type: types.DELETE_COURSE_FAILURE,
+});
+
+export const deleteCourse= (token,cid) => async (dispatch) => {
+  try{
+    dispatch(deleteCourseInfo);
+    const response = await deleteCourseByID(token, "course/"+cid.toString());
+    if (response){
+      dispatch(deleteCourseSuccess(response));
+      ToastConfig.success("Successfully deleted course.")
+    }else{
+      dispatch(deleteCourseFailure());
+      ToastConfig.error("Delete to add course.")
+    }
+  }
+  catch (error) {
+      console.log("error delete course",error);
+      dispatch(deleteCourseFailure());
+      ToastConfig.error(error.response.error)
+    }
+};
+
+

@@ -15,6 +15,7 @@ import { useTheme } from '@mui/material/styles';
 import { studentStatusAction } from '../action/studentinfo';
 import * as Yup from 'yup';
 import { YouTube } from '@mui/icons-material';
+import { creatCourse } from '../action/courses';
 
 export default function CreateCourse({ sid, sstatus }) {
     const [open, setOpen] = React.useState(false);
@@ -24,29 +25,32 @@ export default function CreateCourse({ sid, sstatus }) {
 
     const token = useSelector((state) => state.auth.isAuthenticated);
     console.log("token :: ", token)
+
     const formik = useFormik({
         initialValues: {
             cname: "",
-            years: "",
-            duration: "",
-            fee: "",
-            subject: "",
-            seat: "",
+            course_type:"",
+            years: 0,
+            duration: 0,
+            fee: 0,
+            subject: 0,
+            quota: 30,
             faculty: "",
             affiliated_by:"",
-            credit_hour:"",
+            credit_hour:0,
         },
 
         validationSchema: Yup.object({
             cname: Yup.string().required("required course name"),
-            years: Yup.string().required("required course years"),
-            duration: Yup.string().required("required course duration"),
-            fee: Yup.string().required("required course fee"),
-            subject: Yup.string().required("required course fee"),
-            seat: Yup.string().required("required course seat"),
+            course_type: Yup.string().required("required course name"),
+            years: Yup.number().required("required course years"),
+            duration: Yup.number().required("required course duration"),
+            fee: Yup.number().required("required course fee"),
+            subject: Yup.number().required("required course fee"),
+            quota: Yup.number().required("required course quota"),
             faculty: Yup.string().required("required course faculty"),
             affiliated_by: Yup.string().required("required course affiliated by"),
-            credit_hour:Yup.string().required("required course credit hours"),
+            credit_hour:Yup.number().required("required course credit hours"),
         }),
     });
 
@@ -59,8 +63,23 @@ export default function CreateCourse({ sid, sstatus }) {
     };
 
     const handleStatusApproved = () => {
-       
-        console.log("create button hit")
+         const courseData={
+                "name":formik.values.cname,
+                "fee":parseInt(formik.values.quota),
+                "quota":parseInt(formik.values.quota),
+                "year":parseInt(formik.values.years),
+                "duration":parseInt(formik.values.duration),
+                "subject":parseInt(formik.values.subject),
+                "course_type":formik.values.cname,
+                "faculty":formik.values.faculty,
+                "affiliated_by":formik.values.affiliated_by
+            }
+            const payload = JSON.stringify(courseData);
+
+            console.log("course payload :: ",payload)
+            dispatch(creatCourse(token,courseData))
+
+        console.log("created course.")
         
     }
    
@@ -187,15 +206,15 @@ export default function CreateCourse({ sid, sstatus }) {
                         <Grid item xs={12} sm={12} md={6} >
                             <TextField
                                 required
-                                id="seat"
-                                name="seat"
-                                label="Course seat"
-                                value={formik.values.seat}
+                                id="quota"
+                                name="quota"
+                                label="Course quota"
+                                value={formik.values.quota}
                                 fullWidth
                                 autoComplete="given-name"
                                 variant="outlined"
-                                error={formik.touched.seat && formik.errors.seat ? true : false}
-                                helperText={formik.errors.seat}
+                                error={formik.touched.quota && formik.errors.quota ? true : false}
+                                helperText={formik.errors.quota}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
@@ -219,10 +238,26 @@ export default function CreateCourse({ sid, sstatus }) {
                         <Grid item xs={12} sm={12} md={6} >
                             <TextField
                                 required
+                                id="course_type"
+                                name="course_type"
+                                label="Course course_type"
+                                value={formik.values.course_type}
+                                fullWidth
+                                autoComplete="given-name"
+                                variant="outlined"
+                                error={formik.touched.course_type && formik.errors.course_type ? true : false}
+                                helperText={formik.errors.course_type}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={6} >
+                            <TextField
+                                required
                                 id="credit_hour"
                                 name="credit_hour"
                                 label="Course credit hours"
-                                value={formik.values.affiliated_by}
+                                value={formik.values.credit_hour}
                                 fullWidth
                                 autoComplete="given-name"
                                 variant="outlined"

@@ -13,8 +13,9 @@ import Divider from '@mui/material/Divider';
 import CreateCourse from "./CreateCourse";
 import { IconButton } from '@material-ui/core';
 import CreateIcon from '@mui/icons-material/Create';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCourses } from '../action/courses';
+import { deleteCourse, getAllCourses } from '../action/courses';
 
 
 export const Courses = () => {
@@ -30,6 +31,11 @@ export const Courses = () => {
 
     const handleIcon = () => {
         console.log(";;;;;;")
+    }
+    
+    const handleDelete=(id)=>{
+        console.log("delete id :: ",id)
+        dispatch(deleteCourse(token,id))
     }
 
     return (
@@ -66,10 +72,15 @@ export const Courses = () => {
                                                     {course.name}
                                                 </Typography>
                                             </Grid>
-                                            <Grid item md={4}>
+                                            <Grid item md={2}>
                                                 <span onClick={() => handleIcon()}
                                                 style={{cursor:"pointer"}}
                                                 ><CreateIcon /></span>
+                                            </Grid>
+                                            <Grid item md={2}>
+                                                <span onClick={() => handleDelete(course.ID)}
+                                                style={{cursor:"pointer"}}
+                                                ><DeleteIcon /></span>
                                             </Grid>
                                         </Grid>
                                     </div>}

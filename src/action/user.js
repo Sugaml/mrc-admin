@@ -61,7 +61,6 @@ export const getUserAction= (token) => async (dispatch) => {
       dispatch(getUserFailure());
       ToastConfig.error("Filed to load user")
     }
-    
   } catch (error) {
     console.log("error in fetch user",error);
     dispatch(getUserFailure());
