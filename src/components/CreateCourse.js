@@ -71,6 +71,7 @@ export default function CreateCourse({ sid, sstatus }) {
                 "duration":parseInt(formik.values.duration),
                 "subject":parseInt(formik.values.subject),
                 "course_type":formik.values.cname,
+                "credit_hours":formik.values.credit_hour,
                 "faculty":formik.values.faculty,
                 "affiliated_by":formik.values.affiliated_by
             }
