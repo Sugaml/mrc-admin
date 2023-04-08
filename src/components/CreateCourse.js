@@ -46,7 +46,7 @@ export default function CreateCourse({ sid, sstatus }) {
             years: Yup.number().required("required course years"),
             duration: Yup.number().required("required course duration"),
             fee: Yup.number().required("required course fee"),
-            subject: Yup.number().required("required course fee"),
+            subject: Yup.number().required("required course subject"),
             quota: Yup.number().required("required course quota"),
             faculty: Yup.string().required("required course faculty"),
             affiliated_by: Yup.string().required("required course affiliated by"),
@@ -65,7 +65,7 @@ export default function CreateCourse({ sid, sstatus }) {
     const handleStatusApproved = () => {
          const courseData={
                 "name":formik.values.cname,
-                "fee":parseInt(formik.values.quota),
+                "fee":parseInt(formik.values.fee),
                 "quota":parseInt(formik.values.quota),
                 "year":parseInt(formik.values.years),
                 "duration":parseInt(formik.values.duration),
