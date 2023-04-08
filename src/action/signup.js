@@ -12,11 +12,9 @@ const signUpUser = (response) => ({
 export const signUp= (dataSignUpRequest) => async (dispatch) => {
   try {
     const response = await postRequest(dataSignUpRequest, "user");
-    console.log('......',response.data)
     dispatch(signUpUser(true));
     ToastConfig.success("Successfully Signup.")
   } catch (error) {
-    console.log("error in sign up",error);
-    ToastConfig.error(error.message)
+    ToastConfig.error(error.response.data.error)
   }
 };

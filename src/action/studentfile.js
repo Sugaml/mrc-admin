@@ -30,8 +30,7 @@ export const studentFileInfoAction= (studentFileInfoData) => async (dispatch) =>
     }
   }
   catch (error) {
-      console.log("error save student document ::",error);
       dispatch(studentFileInfoFailure());
-      ToastConfig.error(error.error)
+      ToastConfig.error(error.response.data.error)
     }
 };

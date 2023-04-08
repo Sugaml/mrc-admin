@@ -29,9 +29,8 @@ export const getAllCourses= () => async (dispatch) => {
       ToastConfig.error("Filed to load courses")
     }
   } catch (error) {
-    console.log("error in fetch all courses",error);
     dispatch(getCoursesFailure());
-    ToastConfig.error(error.message)
+    ToastConfig.error(error.response.data.error)
   }
 };
 
@@ -94,9 +93,8 @@ export const creatCourse= (token,courseData) => async (dispatch) => {
     }
   }
   catch (error) {
-      console.log("error add course",error);
       dispatch(createCourseFailure());
-      ToastConfig.error(error.error)
+      ToastConfig.error(error.response.data.error)
     }
 };
 
@@ -127,9 +125,8 @@ export const deleteCourse= (token,cid) => async (dispatch) => {
     }
   }
   catch (error) {
-      console.log("error delete course",error);
       dispatch(deleteCourseFailure());
-      ToastConfig.error(error.response.error)
+      ToastConfig.error(error.response.data.error)
     }
 };
 

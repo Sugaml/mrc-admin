@@ -30,9 +30,8 @@ export const studentInfoAction= (token,studentInfoData) => async (dispatch) => {
     }
   }
   catch (error) {
-      console.log("error in sign up",error);
       dispatch(stuInfoFailure());
-      ToastConfig.error(error.error)
+      ToastConfig.error(error.response.data.error)
     }
 };
 
@@ -63,9 +62,8 @@ export const listStudentAction= (token) => async (dispatch) => {
     }
     
   } catch (error) {
-    console.log("error in fetch user",error);
     dispatch(listStudentFailure());
-    ToastConfig.error(error.message)
+    ToastConfig.error(error.response.data.error)
   }
 };
 
@@ -97,8 +95,7 @@ export const studentStatusAction= (token,sid,statusData) => async (dispatch) => 
     }
   }
   catch (error) {
-      console.log("error in sign up",error);
       dispatch(stuInfoFailure());
-      ToastConfig.error(error.error)
+      ToastConfig.error(error.response.data.error)
     }
 };
