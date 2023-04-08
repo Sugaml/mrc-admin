@@ -11,6 +11,7 @@ export const Transactions = () => {
     { field: 'title', headerName: 'Title', width: 400 },
     { field: 'ref_id', headerName: 'Reference ID', width: 250 },
     { field: 'mode', headerName: 'Mode', width: 100 },
+    { field: 'amount', headerName: 'Amount', width: 100 },
     { field: 'status', headerName: 'Status', width: 150 },
   ];
 
