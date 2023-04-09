@@ -88,7 +88,7 @@ export const studentStatusAction= (token,sid,statusData) => async (dispatch) => 
     const response = await updateStudentStatus(token, "student/"+sid+"/status",statusData);
     if (response){
       dispatch(studentStatusSuccess(response));
-      ToastConfig.success("Successfully added student information.")
+      ToastConfig.success("Successfully approved student form.")
     }else{
       dispatch(studentStatusFailure());
       ToastConfig.error("Filed to load student information.")
