@@ -1,8 +1,8 @@
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import * as React from 'react';
 import { useState, useEffect } from "react";
-import Button from "@material-ui/core/Button";
-import Box from "@material-ui/core/Box";
+import Button from '@mui/material/Button';
+
 
 export const DocumentInformation=()=> {
   const [selectedImage, setSelectedImage] = useState(null);

@@ -1,15 +1,24 @@
 import React from 'react'
 import './App.css'
-import Router from './components/router/Route';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './router/Route';
 import { ToastContainer } from 'react-toastify';
+import { HelmetProvider } from 'react-helmet-async';
 import 'react-toastify/dist/ReactToastify.css';
+import ThemeProvider from './theme';
+import { StyledChart } from './components/chart';
+import ScrollToTop from './components/scroll-to-top';
 
 
 function App() {
   return (
-    <div className="App">
-      <Router />
-      <ToastContainer
+    <HelmetProvider>
+      <BrowserRouter>
+        <ThemeProvider>
+          <ScrollToTop />
+          <StyledChart />
+          <Router />
+          <ToastContainer
           position="top-center"
           autoClose={4000}
           hideProgressBar
@@ -20,7 +29,9 @@ function App() {
           draggable
           pauseOnHover
         />
-    </div>
+        </ThemeProvider>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
