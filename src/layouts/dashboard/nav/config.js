@@ -12,14 +12,29 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
-    title: 'Payment',
-    path: '/dashboard/payment',
-    icon: icon('ic_blog'),
-  },
-  {
     title: 'user',
     path: '/dashboard/user',
     icon: icon('ic_user'),
+  },
+  {
+    title: 'Students',
+    path: '/dashboard/students',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'Courses',
+    path: '/dashboard/courses',
+    icon: icon('ic_analytics'),
+  },
+  {
+    title: 'Transactions',
+    path: '/dashboard/transactions',
+    icon: icon('ic_analytics'),
+  },
+  {
+    title: 'Account',
+    path: '/dashboard/accounts',
+    icon: icon('ic_analytics'),
   },
   {
     title: 'product',

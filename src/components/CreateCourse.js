@@ -2,19 +2,14 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { useFormik } from "formik";
-import DialogContentText from '@mui/material/DialogContentText';
 import { useDispatch, useSelector } from "react-redux";
-import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { studentStatusAction } from '../action/studentinfo';
 import * as Yup from 'yup';
-import { YouTube } from '@mui/icons-material';
 import { creatCourse } from '../action/courses';
 
 export default function CreateCourse({ sid, sstatus }) {

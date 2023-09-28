@@ -1,5 +1,4 @@
 import React from "react";
-import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from "react-redux";
 import { listUserAction } from '../action/user';
 import { DataGrid } from '@mui/x-data-grid';

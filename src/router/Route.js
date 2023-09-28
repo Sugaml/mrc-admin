@@ -13,8 +13,10 @@ import { FeeInformation } from '../components/FeeInformation';
 import { EnrollForm } from '../components/EnrollForm';
 import { User } from '../components/User';
 import { Student } from '../components/Student';
-import { Dashboard } from '@mui/icons-material';
-import { BictCourse } from '../components/BictCourse';
+import { Transactions } from '../components/Transaction';
+import { Students } from '../components/Students';
+import { Courses } from '../components/Courses';
+import { Users } from '../components/Users';
 
 export default function Router() {
   
@@ -31,14 +33,15 @@ export default function Router() {
         { path: 'user', element: <UserPage /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
-        { path: 'payment', element: <KhaltiPayment />},
-        { path: 'account', element: <FeeInformation />},
-        { path: 'enroll', element: <EnrollForm />},
-        { path: 'user/:id', element: <User />},
-        { path: 'student/:id', element: <Student />},
-         { path: 'home', element: <Dashboard />},
-        { path: 'menu', element: <BictCourse />},
-        // { path: 'online', element: <CourseChoice />},
+        { path: 'payment', element: <KhaltiPayment /> },
+        { path: 'account', element: <FeeInformation /> },
+        { path: 'enroll', element: <EnrollForm /> },
+        { path: 'user/:id', element: <User /> },
+        { path: 'accounts', element: <Users/>},
+        { path: 'student/:id', element: <Student /> },
+        { path: 'courses', element: <Courses /> },
+        { path: 'students', element: <Students /> },
+        { path: 'transactions', element: <Transactions /> },
       ],
     },
     {
