@@ -20,7 +20,6 @@ import { Users } from '../components/Users';
 
 export default function Router() {
   
-  // const isAuth = true;
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
 
   const routes = useRoutes([
