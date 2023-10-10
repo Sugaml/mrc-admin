@@ -8,7 +8,6 @@ import UserPage from '../pages/UserPage';
 import ProductsPage from '../pages/ProductsPage';
 import BlogPage from '../pages/BlogPage'
 import Page404 from '../pages/Page404';
-import { KhaltiPayment } from '../components/KhaltiPayment';
 import { FeeInformation } from '../components/FeeInformation';
 import { EnrollForm } from '../components/EnrollForm';
 import { User } from '../components/User';
@@ -17,6 +16,8 @@ import { Transactions } from '../components/Transaction';
 import { Students } from '../components/Students';
 import { Courses } from '../components/Courses';
 import { Users } from '../components/Users';
+import StudentPage from '../pages/StudentPage';
+import TransactionPage from '../pages/TransactionPage';
 
 export default function Router() {
   
@@ -32,7 +33,7 @@ export default function Router() {
         { path: 'user', element: <UserPage /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
-        { path: 'payment', element: <KhaltiPayment /> },
+        { path: 'student', element: <StudentPage /> },
         { path: 'account', element: <FeeInformation /> },
         { path: 'enroll', element: <EnrollForm /> },
         { path: 'user/:id', element: <User /> },
@@ -41,6 +42,7 @@ export default function Router() {
         { path: 'courses', element: <Courses /> },
         { path: 'students', element: <Students /> },
         { path: 'transactions', element: <Transactions /> },
+        { path: 'transaction', element: <TransactionPage /> },
       ],
     },
     {

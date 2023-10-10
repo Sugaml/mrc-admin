@@ -20,8 +20,8 @@ const listTransaction = () => ({
       dispatch(listTransaction());
       const response = await getTransactions(token, "payment/transactions");
       if (response.data || response.status === 200){
-        console.log("transactions response :: ",response)
-        await dispatch(listTransactionSuccess(response.data));
+        console.log("transactions response :: ",response.data)
+        await dispatch(listTransactionSuccess(response.data.data));
         ToastConfig.success("Successfully list transactions")
       }
       else{
